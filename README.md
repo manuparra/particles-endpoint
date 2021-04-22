@@ -3,7 +3,7 @@
 
 # Particles EndPoint (API RESTFUL)
 
-  * [Installing](#installing)
+  * [Setting-up](#installing)
   * [Run the webservice for the EndPoint](#run-the-webservice-for-the-endpoint)
   * [EndPoint information](#endpoint-information)
     + [Parameters](#parameters)
