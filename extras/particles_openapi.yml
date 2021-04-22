@@ -1,0 +1,82 @@
+openapi: 3.0.1
+info:
+  title: Particle lookup
+  description: 'API for the particle Lookup'
+  contact:
+    email: nektarios.benekos@cern.ch
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- url: http://localhost:8098/
+tags:
+- name: particles
+  description: Particles lookup endpoint
+paths:
+  /particle/:
+    get:
+      tags:
+      - particle
+      summary: Lookup by the partial name of the particles
+      description: Search name of the particles by a partial string
+      operationId: lookupparticles
+      parameters:
+      - name: lookup
+        in: query
+        description: Status values that need to be considered for filter
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: species
+        in: query
+        description: Species of the particle
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: List of particles matching with the partial string name.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/particles'
+        405:
+          description: Method not available
+          content: {}
+components:
+  schemas:
+    particles:
+      type: object
+      properties:
+        astrolake_id:
+          type: integer
+          format: int64
+        gene_name:
+          type: string
+        location:
+          type: string  
+        species:
+          type: string  
+  securitySchemes:
+    petstore_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://petstore.swagger.io/oauth/dialog
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
