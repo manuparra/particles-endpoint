@@ -1,0 +1,8 @@
+
+[DB]
+dbstore =  MySQL
+host =     atolon.ugr.es
+user =     user_test_as
+password = anonymous
+port =     3306
+db =       astrolake_website_97
